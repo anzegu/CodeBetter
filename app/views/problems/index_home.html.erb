@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Problems</h1>
+<h1>Challanges</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Text</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +14,6 @@
     <% @problems.each do |problem| %>
       <tr>
         <td><%= problem.name %></td>
-        <td><%= problem.text %></td>
-        <td><%= link_to 'Show', problem %></td>
-        <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
-        <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Solve', editor_path(problem.id) %></td>
       </tr>
     <% end %>
@@ -27,4 +22,3 @@
 
 <br>
 
-<%= link_to 'New Problem', new_problem_path %>
