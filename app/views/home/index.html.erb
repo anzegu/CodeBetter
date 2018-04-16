@@ -1,6 +1,6 @@
 <div id="container">
 	<div id="language_title"> <p>Please choose the language you'd like to code with </p> </div> 
-	<%= form_with(url: home_solving_path, local: true, html: {id: "language_form"}) do |form| %>
+	<%= form_with(url: home_solving_path, local: true,html: {id: "language_form", :method => 'GET'}) do |form| %>
 	<div class="field">
     <%#= form.number_field :integer, id: :language_id %>
     <%= collection_select(:language, :language_id, Language.all, :id, :name, {}, {id: 'languages_choose'}) %>
