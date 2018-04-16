@@ -23,7 +23,8 @@
 
   <div class="field">
     <%= form.label :integer %>
-    <%= form.number_field :integer, id: :language_id %>
+    <%#= form.number_field :integer, id: :language_id %>
+    <%= collection_select(:language, :language_id, Language.all, :id, :name) %>
   </div>
 
   <div class="actions">

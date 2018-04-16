@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Text</th>
+      <th>Language</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= problem.name %></td>
         <td><%= problem.text %></td>
+        <td><%= problem.language_id %></td>
         <td><%= link_to 'Show', problem %></td>
         <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
         <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
