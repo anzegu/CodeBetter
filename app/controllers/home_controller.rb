@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	before_action :set_problem
+	before_action :set_problem, only: [:editor]
   def index
   end
 
