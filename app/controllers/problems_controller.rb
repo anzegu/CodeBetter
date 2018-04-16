@@ -11,6 +11,7 @@ class ProblemsController < ApplicationController
     @problems = Problem.all
   end
 
+
   # GET /problems/1
   # GET /problems/1.json
   def show
