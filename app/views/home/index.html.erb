@@ -4,6 +4,7 @@
 	<div class="field">
     <%#= form.number_field :integer, id: :language_id %>
     <%= collection_select(:language, :language_id, Language.all, :id, :name, {}, {id: 'languages_choose'}) %>
+    <%= form.hidden_field 'probid', :value => "1" %>
   	</div>
 	<div class="actions">
     <%= form.submit "Start coding", :id => 'take_challenge' %>
