@@ -1,3 +1,17 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div id="container">
+	<div id="language_title"> <p>Please choose the language you'd like to code with </p> </div> 
+	<%= form_with(url: home_solving_path, local: true, html: {id: "language_form"}) do |form| %>
+	<div class="field">
+    <%#= form.number_field :integer, id: :language_id %>
+    <%= collection_select(:language, :language_id, Language.all, :id, :name, {}, {id: 'languages_choose'}) %>
+  	</div>
+	<div class="actions">
+    <%= form.submit "Start coding", :id => 'take_challenge' %>
+  	</div>
+  	<% end %>
+
+
+
+
 <%= link_to "Log out", destroy_user_session_path, :method=>'delete'%>
+</div>
