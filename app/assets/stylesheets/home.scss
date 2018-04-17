@@ -47,7 +47,7 @@
     margin-left: -20px;
     padding-top: 35px;
 }
-#languages_choose {
+.languages_choose {
     height: 60px;
     width: 347px;
     border: 2px solid #adadad;
@@ -61,8 +61,12 @@
     -webkit-border-radius: 3px;
     background: #f1f1f1;
     margin: 40px auto 20px;
+    text-decoration:none;
 }
-#take_challenge, #take_challenge_fake {
+.languages_choose:hover {
+    text-decoration:none;
+}
+.take_challenge, #take_challenge_fake {
     background: #229a33;
     color: #fff;
     padding: 8px 23px;
@@ -78,7 +82,7 @@
     text-shadow: 1px 1px 2px #5b5b5b;
 }
 #language_form {
-    width: 347px;
+    width: 114px;
     margin: 0 auto;
     border: 0 solid red;
 }

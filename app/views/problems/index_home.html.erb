@@ -14,7 +14,7 @@
     <% @problems.each do |problem| %>
       <tr>
         <td><%= problem.name %></td>
-        <td><%= link_to 'Solve', editor_path(problem.id) %></td>
+        <td><%= link_to 'Solve', language_path(problem.id) %></td>
       </tr>
     <% end %>
   </tbody>
