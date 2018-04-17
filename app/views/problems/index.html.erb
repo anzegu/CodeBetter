@@ -15,7 +15,7 @@
     <% @problems.each do |problem| %>
       <tr>
         <td><%= problem.name %></td>
-        <td><%= problem.text %></td>
+        <td><%== problem.text %></td>
         <td><%= link_to 'Show', problem %></td>
         <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
         <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,5 +27,3 @@
 <br>
 
 <%= link_to 'New Problem', new_problem_path %>
-
-<%= render 'compiler' %>

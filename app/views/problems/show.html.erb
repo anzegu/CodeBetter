@@ -7,7 +7,7 @@
 
 <p>
   <strong>Text:</strong>
-  <%= @problem.text %>
+  <%== @problem.text %>
 </p>
 
 <p>
@@ -29,8 +29,6 @@
   <strong>Output2:</strong>
   <%= @problem.output2 %>
 </p>
-
-<%= render 'compiler' %>
 
 <%= link_to 'Edit', edit_problem_path(@problem) %> |
 <%= link_to 'Back', problems_path %>
