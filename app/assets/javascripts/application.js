@@ -14,6 +14,8 @@
 //= require turbolinks
 //= require_tree .
 
+//= require ace-rails-ap
+
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets

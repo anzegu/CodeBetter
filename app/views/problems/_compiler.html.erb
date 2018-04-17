@@ -1,0 +1,33 @@
+<style type="text/css" media="screen">
+    #editor { 
+        height: 175px;
+    }
+</style>
+<div id="editor"></div>
+<%= form_for(@problem, :url => problem_code_request_path(@problem), method: :get, remote: true ) do |f| %>
+    <%= f.text_area :text, id: :editor_code, style: "visibility: hidden;"  %>
+    <%= f.label :INPUT %>
+    <%= f.text_field :input1 %>
+    <div stysle="float: right"><%= f.submit :value => "Run" %></div>
+<% end %>
+
+<br />
+<div id="output">
+    OUTPUT
+</div>
+<br />
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var textarea = $('#editor_code');
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/ruby");
+    
+    editor.getSession().on('change', function () {
+       textarea.val(editor.getSession().getValue());
+    });
+    
+   textarea.val(editor.getSession().getValue());
+</script>

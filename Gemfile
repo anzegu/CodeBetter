@@ -35,6 +35,10 @@ gem 'devise'
 
 gem 'jquery-rails'
 
+gem 'ace-rails-ap'
+
+gem 'http'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :problems
+  resources :problems do
+    get 'code_request'
+  end
   get 'home/index'
 
   devise_for :users

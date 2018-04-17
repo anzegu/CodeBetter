@@ -65,6 +65,35 @@ class ProblemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def strip_hash_values!(hash)
+  hash.each do |k, v|
+    case v
+    when String
+      v.strip!
+    when Array
+      v.each {|av| av.strip!}
+    when Hash
+      strip_hash_values!(v)
+    end
+  end
+end
+  
+  def code_request
+    @problem = Problem.new(params.require(:problem).permit(:text, :input1))
+    @body = HTTP.headers(:accept => "application/json").post("https://api.judge0.com/submissions/?base64_encoded=false&wait=false", :form => {:source_code => @problem.text, :language_id => "38", :stdin => @problem.input1}).parse
+    @token = @body["token"]
+    @comp = HTTP.headers(:accept => "application/json").get("https://api.judge0.com/submissions/" + @token).parse
+    @comp = strip_hash_values!(@comp)
+    @stdout = @comp["stdout"]
+    @stderr = @comp["stderr"]
+    @message = @comp["message"]
+    
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
