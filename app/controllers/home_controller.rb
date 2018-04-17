@@ -4,8 +4,11 @@ class HomeController < ApplicationController
   end
 
   def editor
-    @code = Code.find_by(problem_id: @problem.id)
     @lang = Language.find_by(id: params[:lid])
+    @code = Code.find_by(problem_id: @problem.id, language_id: @lang)
+    if @code.nil?
+      redirect_to request.referer || root_path, notice: "This language doesn't exist for the selected challange"
+    end
   end
   
   def strip_hash_values!(hash)
@@ -24,11 +27,13 @@ class HomeController < ApplicationController
   def code_request
     @code = params[:code][:content]
     @judgeid = params[:code][:judgeid]
-    @body = HTTP.headers(:accept => "application/json").post("https://api.judge0.com/submissions/?base64_encoded=false&wait=false", :form => {:source_code => @code, :language_id => @judgeid}).parse
+    @input = params[:code][:input]
+    @body = HTTP.headers(:accept => "application/json").post("https://api.judge0.com/submissions/?base64_encoded=false&wait=false", :form => {:source_code => @code, :language_id => @judgeid, :stdin => @input}).parse
     @token = @body["token"]
     @comp = HTTP.headers(:accept => "application/json").get("https://api.judge0.com/submissions/" + @token).parse
     @comp = strip_hash_values!(@comp)
     @stdout = @comp["stdout"]
+    @error = @comp["stderr"]
     
     
     respond_to do |format|

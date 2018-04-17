@@ -19,13 +19,14 @@
 	            
 	            <style type="text/css" media="screen">
 				    #editor { 
-				        height: 175px;
+				        height: 375px;
 				    }
 				</style>
 				<div id="editor"><%= @code.content %></div>
 				<%= form_for( :code, :url => '/code_request', method: :get, remote: true ) do |f| %>
 				    <%= f.text_area :content, :id => "editor_code", style: "visibility: hidden;" %>
-				    <%= f.hidden_field :judgeid, value: @lang.judgeid %>
+				    <%= f.hidden_field :judgeid, value: @lang.judgeid %><br />
+				    <%= f.text_field :input %>
 				    <div stysle="float: right"><%= f.submit :value => "Run" %></div>
 				<% end %>
 				
