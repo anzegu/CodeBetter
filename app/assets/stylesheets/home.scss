@@ -50,7 +50,7 @@
 .languages_choose {
     height: 60px;
     width: 347px;
-    border: 2px solid #adadad;
+    
     font-size: 21px;
     padding: 5px 8px;
     font-family: "Franklin Gothic Medium";
@@ -59,9 +59,17 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
-    background: #f1f1f1;
+    
     margin: 40px auto 20px;
     text-decoration:none;
+}
+.language_choosediv{
+    background: #f1f1f1;
+    border: 2px solid #adadad;
+    width: 166px;
+    text-align: center;
+    padding: 3px;
+    margin: 15px;
 }
 .languages_choose:hover {
     text-decoration:none;
@@ -82,7 +90,21 @@
     text-shadow: 1px 1px 2px #5b5b5b;
 }
 #language_form {
-    width: 114px;
+    width: 200px;
     margin: 0 auto;
     border: 0 solid red;
+}
+
+.navbar-right{
+    width:100px;
+}
+.navbar-item-logout {
+    color: rgba(0, 0, 0, 0.5);
+}
+.navbar-nav{
+    width: 92%;
+}
+.navbar-item-logout:hover{
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
 }

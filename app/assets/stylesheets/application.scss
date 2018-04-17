@@ -11,3 +11,17 @@
  * It is generally better to create a new file per style scope.
  */
 @import "bootstrap";
+
+.navbar-right{
+	width:100px;
+}
+.navbar-item-logout {
+    color: rgba(0, 0, 0, 0.5);
+}
+.navbar-nav{
+	width: 92%;
+}
+.navbar-item-logout:hover{
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+}
