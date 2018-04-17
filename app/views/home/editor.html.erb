@@ -16,4 +16,36 @@
 	                <p><span>Input:</span><%==  @problem.input2  %></p>
 	                <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output2  %></p>
 	            </div>
+	            
+	            <style type="text/css" media="screen">
+				    #editor { 
+				        height: 175px;
+				    }
+				</style>
+				<div id="editor"><%= @code.content %></div>
+				<%= form_for( :code, :url => '/code_request', method: :get, remote: true ) do |f| %>
+				    <%= f.text_area :content, :id => "editor_code", style: "visibility: hidden;" %>
+				    <%= f.hidden_field :judgeid, value: @lang.judgeid %>
+				    <div stysle="float: right"><%= f.submit :value => "Run" %></div>
+				<% end %>
+				
+				<div id="output">
+				    <%= @lang %>
+				</div>
+				
+				<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var textarea = $('#editor_code');
+				
+				    var editor = ace.edit("editor");
+				    editor.setTheme("ace/theme/monokai");
+				    editor.session.setMode("ace/mode/<%= @lang.acename %>");
+				    
+				    editor.getSession().on('change', function () {
+				       textarea.val(editor.getSession().getValue());
+				    });
+				    
+				   textarea.val(editor.getSession().getValue());
+				</script>
+	            
 </div>

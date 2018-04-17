@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :problems
+  resources :problems 
+  resources :codes
+
   get 'home/index'
 
   devise_for :users
@@ -7,5 +9,6 @@ Rails.application.routes.draw do
   get 'editor/:id/:lid' => 'home#editor', :as => :editor
   get 'challanges/' => 'problems#index_home', :as => :solve
   get 'languages/:id' => 'home#language', :as => :language
+  get 'code_request/' => 'home#code_request', :as => :code_request
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
