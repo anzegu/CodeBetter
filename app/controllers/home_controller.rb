@@ -25,7 +25,6 @@ class HomeController < ApplicationController
       @stdout = @comp["stdout"].squish
     end
     
-    
     respond_to do |format|
       format.html      
       format.js
@@ -36,6 +35,27 @@ class HomeController < ApplicationController
     @cpp = Code.find_by(problem_id: @problem.id, language_id: 3)
     @ruby = Code.find_by(problem_id: @problem.id, language_id: 2)
     @js = Code.find_by(problem_id: @problem.id, language_id: 1)
+  end
+  
+  def users
+    @users = User.all
+  end
+  
+  def change
+    @user = User.find(params[:id])
+    if @user.admin == 1
+      @user.admin = 0
+      @state = "Reular user"
+    else
+      @user.admin = 1
+      @state = "Admin"
+    end
+    @user.save
+    
+    respond_to do |format|
+      format.html      
+      format.js
+    end
   end
   
   private

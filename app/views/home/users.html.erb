@@ -1,0 +1,21 @@
+<div id="container">
+    <h1>Users</h1>
+    <% @users.each do |user| %>
+        <div class="challange_button" style="width: 400px;">
+            <div id="email" style="float: left;">    
+                <%= user.email %> - 
+            </div>
+            <div id=<%= user.id %> style="float: left;">
+                <% if user.admin == 1 %>
+                    &nbsp; Admin | 
+                <% else %>
+                    &nbsp; Regular user | 
+                <% end %>
+            </div>
+            <% if current_user.admin == 1 %>
+                <%= link_to 'Delete', users_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Change', {:controller => :home, :action => 'change', :id => user.id}, remote: true %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
