@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get 'code_request/' => 'home#code_request', :as => :code_request
   get 'users/' => 'home#users', :as => :users
   get 'change/:id' => 'home#change', :as => :change
+  
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
