@@ -17,7 +17,9 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to "Challanges", solve_path, :class => "nav-item nav-link" %>
-      <%= link_to "Add Problem", new_problem_path, :class => "nav-item nav-link" %>
+      <% if current_user.admin == 1 %>
+        <%= link_to "Add Problem", new_problem_path, :class => "nav-item nav-link" %>
+      <% end %>
     </div>
     <div class="navbar-right">
       <%= link_to "Log out", destroy_user_session_path, :method=>'delete', :class=>'navbar-item-logout'%>

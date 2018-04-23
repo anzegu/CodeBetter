@@ -9,7 +9,7 @@
           <%= problem.name %>
         </div>
       <% end %>
-      <% if current_user.admin == 0 %>
+      <% if current_user.admin == 1 %>
         <%= link_to 'Delete', language_path(problem), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     <% end %>
