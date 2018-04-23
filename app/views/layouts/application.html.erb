@@ -10,13 +10,14 @@
 
   <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">CodeBetter</a>
+  <%= link_to "CodeBetter", root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to "Challanges", solve_path, :class => "nav-item nav-link" %>
+      <%= link_to "Add Problem", new_problem_path, :class => "nav-item nav-link" %>
     </div>
     <div class="navbar-right">
       <%= link_to "Log out", destroy_user_session_path, :method=>'delete', :class=>'navbar-item-logout'%>

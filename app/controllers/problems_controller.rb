@@ -33,7 +33,7 @@ class ProblemsController < ApplicationController
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
+        format.html { redirect_to language_path(@problem), notice: 'Problem was successfully created.' }
         format.json { render :show, status: :created, location: @problem }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class ProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @problem.update(problem_params)
-        format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
+        format.html { redirect_to language_path(@problem), notice: 'Problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @problem }
       else
         format.html { render :edit }
@@ -61,37 +61,8 @@ class ProblemsController < ApplicationController
   def destroy
     @problem.destroy
     respond_to do |format|
-      format.html { redirect_to problems_url, notice: 'Problem was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Problem was successfully destroyed.' }
       format.json { head :no_content }
-    end
-  end
-  
-  def strip_hash_values!(hash)
-  hash.each do |k, v|
-    case v
-    when String
-      v.strip!
-    when Array
-      v.each {|av| av.strip!}
-    when Hash
-      strip_hash_values!(v)
-    end
-  end
-end
-  
-  def code_request
-    @problem = Problem.new(params.require(:problem).permit(:text, :input1))
-    @body = HTTP.headers(:accept => "application/json").post("https://api.judge0.com/submissions/?base64_encoded=false&wait=false", :form => {:source_code => @problem.text, :language_id => "38", :stdin => @problem.input1}).parse
-    @token = @body["token"]
-    @comp = HTTP.headers(:accept => "application/json").get("https://api.judge0.com/submissions/" + @token).parse
-    @comp = strip_hash_values!(@comp)
-    @stdout = @comp["stdout"]
-    @stderr = @comp["stderr"]
-    @message = @comp["message"]
-    
-    
-    respond_to do |format|
-      format.js
     end
   end
 

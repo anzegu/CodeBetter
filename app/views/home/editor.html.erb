@@ -1,52 +1,57 @@
 <div id="container">
-	<div class="real_question_title" style="margin-top:17px;">Challenge</div>
-	            <div id="real_question"> 
-	                <%==  @problem.text  %>
-
-	<br> 
-	            </div> 
-
-	            
-	            <!-- SAMPLES -->
-	            <div class="real_question_title" style="margin-top:23px;">Sample Test Cases</div>
-	            <div id="samples_area">
-	                <p><span>Input:</span><%==  @problem.input1  %></p>
-	                <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output1  %></p>
-	                <br>
-	                <p><span>Input:</span><%==  @problem.input2  %></p>
-	                <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output2  %></p>
-	            </div>
-	            
-	            <style type="text/css" media="screen">
-				    #editor { 
-				        height: 375px;
-				    }
-				</style>
-				<div id="editor"><%= @code.content %></div>
-				<%= form_for( :code, :url => '/code_request', method: :get, remote: true ) do |f| %>
-				    <%= f.text_area :content, :id => "editor_code", style: "visibility: hidden;" %>
-				    <%= f.hidden_field :judgeid, value: @lang.judgeid %><br />
-				    <%= f.text_field :input %>
-				    <div stysle="float: right"><%= f.submit :value => "Run" %></div>
-				<% end %>
-				
-				<div id="output">
-				    <%= @lang %>
-				</div>
-				
-				<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-				<script>
-				    var textarea = $('#editor_code');
-				
-				    var editor = ace.edit("editor");
-				    editor.setTheme("ace/theme/monokai");
-				    editor.session.setMode("ace/mode/<%= @lang.acename %>");
-				    
-				    editor.getSession().on('change', function () {
-				       textarea.val(editor.getSession().getValue());
-				    });
-				    
-				   textarea.val(editor.getSession().getValue());
-				</script>
-	            
+	<p><%= notice %></p>
+	<div class="real_question_title" style="margin-top:17px;">
+		Challenge - <b><%= @lang.name %></b>
+	</div><br />
+	    <div id="real_question">
+	        <%==  @problem.text  %><br /> 
+	        <br />
+	    </div> 
+	    
+	    <div class="real_question_title" style="margin-top:23px;">
+	    	Sample Test Cases
+	    </div>
+	    <div id="samples_area">
+	        <p><span>Input:</span><%==  @problem.input1  %></p>
+	        <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output1  %></p>
+	        <br>
+	        <p><span>Input:</span><%==  @problem.input2  %></p>
+	        <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output2  %></p>
+	    </div>
+		<% if  current_user.admin == 1 %>
+	        <%= link_to "Edit Code", { :controller => :codes, :action => 'edit', :id => @code.id, :lid => @lang.id } %> | 
+	        <%= link_to 'Delete Code', code_path(@code), method: :delete, data: { confirm: 'Are you sure?' } %> | 
+	        <%= link_to 'Edit Problem', edit_problem_path(@problem) %> | 
+	        <%= link_to 'Delete Problem', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
+	    <% end %> 
+	    <style type="text/css" media="screen">
+		    #editor { 
+		        height: 375px;
+		    }
+		</style>
+		<%= form_for( :code, :url => '/code_request', method: :get, remote: true ) do |f| %>
+		    <%= f.text_area :content, :id => "editor_code", style: "visibility: hidden;" %>
+		    <div id="editor"><%= @code.content %></div>
+		    <%= f.hidden_field :judgeid, value: @lang.judgeid %><br />
+		    <div id="input-output">
+		    	<%= f.text_field :input, placeholder: "Enter your input here" %>
+		    	<div id="output">Output will be displayed here</div>
+		    </div><br />
+		    <%= f.submit :value => "Run Code", :class => "run-code" %><br />
+		<% end %>
+		<br />
+		<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		    var textarea = $('#editor_code');
+		
+		    var editor = ace.edit("editor");
+		    editor.setTheme("ace/theme/monokai");
+		    editor.session.setMode("ace/mode/<%= @lang.acename %>");
+		    
+		    editor.getSession().on('change', function () {
+		       textarea.val(editor.getSession().getValue());
+		    });
+		    
+		   textarea.val(editor.getSession().getValue());
+		</script>
 </div>

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-	before_action :set_problem, only: [:editor]
+	before_action :set_problem, only: [:editor, :language]
+	
   def index
   end
 
@@ -11,19 +12,6 @@ class HomeController < ApplicationController
     end
   end
   
-  def strip_hash_values!(hash)
-    hash.each do |k, v|
-      case v
-      when String
-        v.strip!
-      when Array
-        v.each {|av| av.strip!}
-      when Hash
-        strip_hash_values!(v)
-      end
-    end
-  end
-  
   def code_request
     @code = params[:code][:content]
     @judgeid = params[:code][:judgeid]
@@ -31,9 +19,11 @@ class HomeController < ApplicationController
     @body = HTTP.headers(:accept => "application/json").post("https://api.judge0.com/submissions/?base64_encoded=false&wait=false", :form => {:source_code => @code, :language_id => @judgeid, :stdin => @input}).parse
     @token = @body["token"]
     @comp = HTTP.headers(:accept => "application/json").get("https://api.judge0.com/submissions/" + @token).parse
-    @comp = strip_hash_values!(@comp)
-    @stdout = @comp["stdout"]
-    @error = @comp["stderr"]
+    if @comp["stderr"].present?
+      @error = @comp["stderr"].squish
+    else
+      @stdout = @comp["stdout"].squish
+    end
     
     
     respond_to do |format|
@@ -43,6 +33,9 @@ class HomeController < ApplicationController
   end
 
   def language
+    @cpp = Code.find_by(problem_id: @problem.id, language_id: 3)
+    @ruby = Code.find_by(problem_id: @problem.id, language_id: 2)
+    @js = Code.find_by(problem_id: @problem.id, language_id: 1)
   end
   
   private

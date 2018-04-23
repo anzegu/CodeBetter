@@ -1,16 +1,17 @@
 <div id="container">
-    <div id="language_title"> <p>Please choose the language you'd like to code with </p> </div> 
-        <div id="language_form">
-            <div class="language_choosediv">
-                <%= link_to "Ruby", {:action => 'editor', :id => "1", :lid => "2"},{class: 'languages_choose'} %><br>
-            </div>
-            <div class="language_choosediv">
-                <%= link_to "JavaScript", {:action => 'editor', :id => "1", :lid => "1"},{class: 'languages_choose'} %><br>
-            </div>
-            <div class="language_choosediv">
-                <%= link_to "C++", {:action => 'editor', :id => "1", :lid => "3"},{class: 'languages_choose'} %><br>
-            </div>
+    <div id="language_title">
+        <p>Please choose the language you'd like to code with </p>
+    </div> 
+    <div id="language_form">
+        <div class="language_choosediv">
+            <%= link_to "Ruby", {:action => 'editor', :id => "1", :lid => "2"},{class: 'languages_choose'} %><br>
         </div>
-
-    <%= link_to "Log out", destroy_user_session_path, :method=>'delete'%>
+        <div class="language_choosediv">
+            <%= link_to "JavaScript", {:action => 'editor', :id => "1", :lid => "1"},{class: 'languages_choose'} %><br>
+        </div>
+        <div class="language_choosediv">
+            <%= link_to "C++", {:action => 'editor', :id => "1", :lid => "3"},{class: 'languages_choose'} %><br>
+        </div>
+    </div>
+    <p id="notice"><%= notice %></p>
 </div>

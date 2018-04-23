@@ -15,10 +15,14 @@ class CodesController < ApplicationController
   # GET /codes/new
   def new
     @code = Code.new
+    @lang = Language.find_by(id: params[:lid])
+    @problem = Problem.find(params[:id])
   end
 
   # GET /codes/1/edit
   def edit
+    @lang = Language.find_by(id: params[:lid])
+    @problem = Problem.find(params[:id])
   end
 
   # POST /codes
@@ -28,7 +32,7 @@ class CodesController < ApplicationController
 
     respond_to do |format|
       if @code.save
-        format.html { redirect_to @code, notice: 'Code was successfully created.' }
+        format.html { redirect_to language_path(@code.problem_id), notice: 'Code was successfully created.' }
         format.json { render :show, status: :created, location: @code }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class CodesController < ApplicationController
   def update
     respond_to do |format|
       if @code.update(code_params)
-        format.html { redirect_to @code, notice: 'Code was successfully updated.' }
+        format.html { redirect_to editor_path(@code.problem_id, @code.language_id), notice: 'Code was successfully updated.' }
         format.json { render :show, status: :ok, location: @code }
       else
         format.html { render :edit }
@@ -54,9 +58,10 @@ class CodesController < ApplicationController
   # DELETE /codes/1
   # DELETE /codes/1.json
   def destroy
+    id = @code.problem_id
     @code.destroy
     respond_to do |format|
-      format.html { redirect_to codes_url, notice: 'Code was successfully destroyed.' }
+      format.html { redirect_to language_path(id), notice: 'Code was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

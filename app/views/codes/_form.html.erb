@@ -1,3 +1,8 @@
+<style type="text/css" media="screen">
+  #editor { 
+      height: 375px;
+  }
+</style>
 <%= form_with(model: code, local: true) do |form| %>
   <% if code.errors.any? %>
     <div id="error_explanation">
@@ -10,23 +15,49 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :language_id %>
-    <%= form.text_field :language_id, id: :code_language_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problem_id %>
-    <%= form.text_field :problem_id, id: :code_problem_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :code_content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <table width="100%">
+    <tr>
+      <div class="field">
+        <td width="50ox"><%= form.label :language_id, style: "visibility: hidden;" %></td>
+        <td><%= form.text_field :language_id, id: :code_language_id, :value => @lang.id, style: "visibility: hidden;" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :problem_id, style: "visibility: hidden;" %></td>
+        <td><%= form.text_field :problem_id, id: :code_problem_id, :value => @problem.id, style: "visibility: hidden;" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :name, @lang.name, style: "font-weight: bold; font-size: 19px;"%></td>
+        <td><%= form.text_area :content, :id => "editor_code", style: "visibility: hidden;" %></td>
+      </div>
+    </tr>
+    <tr>
+      <td colspan="2"><div id="editor"><%= @code.content %></div></td>
+    </tr>
+    <tr>
+      <div class="actions">
+        <td><br /><%= form.submit class: "btn btn-default" %></td>
+      </div>
+    </tr>  
+  </table>
 <% end %>
+
+
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var textarea = $('#editor_code');
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/<%= @lang.acename %>");
+    
+    editor.getSession().on('change', function () {
+       textarea.val(editor.getSession().getValue());
+    });
+    
+   textarea.val(editor.getSession().getValue());
+</script>

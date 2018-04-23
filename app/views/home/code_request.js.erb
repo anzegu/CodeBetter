@@ -1,2 +1,5 @@
+<% if @error.nil? %>
 document.getElementById("output").innerHTML = ("<%=@stdout%>");
-console.log('hi');
+<% else %>
+document.getElementById("output").innerHTML = ("<%=@error%>");
+<% end %>

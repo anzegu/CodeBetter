@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.real_question_title{
-	font-family: Tahoma, Geneva, sans-serif;
-    margin-top: 14px;
-    font-size: 17px;
-}
 #real_question {
     border: 0 solid #bfbfbf;
     -moz-border-radius: 3px;
@@ -17,7 +12,7 @@
 .real_question_title {
     font-family: Tahoma, Geneva, sans-serif;
     margin-top: 14px;
-    font-size: 17px;
+    font-size: 19px;
 }
 #samples_area {
     margin-top: 15px;
@@ -107,4 +102,47 @@
 .navbar-item-logout:hover{
     color: rgba(0, 0, 0, 0.7);
     text-decoration: none;
+}
+#input-output{
+    width: 967px;
+    margin: 20px auto 0 0;
+    overflow: auto;
+    background: #f7f7f7;
+    padding: 16px 14px 25px;
+    background: linear-gradient(to right, #f9f9f9 0, rgba(255, 255, 255, 0) 100%);
+    border-radius: 4px;
+    border: 1px solid #bfbfbf;
+}
+#code_input{
+    width: 440px;
+    height: 50px;
+    padding: 5px;
+    float: left;
+    border-radius: 4px;
+    border: 1px solid #bfbfbf;
+}
+#output{
+    width: 440px;
+    height: 50px;
+    padding: 10px;
+    float: right;
+    border-radius: 4px;
+    border: 1px solid #bfbfbf;
+    resize: both;
+    overflow: auto;
+}
+.run-code{
+    padding: 12px 30px;
+    font-family: "Franklin Gothic Medium";
+    box-shadow: 0 1px 1px #adadad;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin-left: 6px;
+    margin-right: 4px;
+    background: #89d66f;
+    color: #fff;
+    border: 1px solid #5aa840;
+    text-shadow: 1px 1px 1px #525252;
 }
