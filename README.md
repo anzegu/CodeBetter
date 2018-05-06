@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'ace-rails-ap'
 gem 'http'
 ```
-The view files are located in the "home" folder. It's roues are:
+The view files are located in the "home" folder. It's routes are:
 ```
   root 'home#index'
   get 'editor/:id/:lid' => 'home#editor', :as => :editor
