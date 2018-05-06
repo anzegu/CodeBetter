@@ -1,4 +1,6 @@
-This is an app that offers users an onlince text editor and compiler using the ace-rails gem and Judge0 API.
+This is an app that offers users an online text editor and compiler using the ace-rails gem and Judge0 API in a variety of languages such as Ruby, C++, JavaScript and so on.
+
+---------------------------------------------------------
 
 <b>PROJECT CREATION</b>
 
@@ -51,5 +53,7 @@ This API runs code and returns the output to the sender. All you have to do is s
 The output has to be parsed in order to show individual parts of the output. Judge0 requires a token to compile the code, so the first request is for the token. With it you make a second request and that's where the result is sent.
 Judge0 compiles a variety of languages, to se a list of them visit the official page: https://api.judge0.com/#statuses-and-languages-languages
 Everything else that you would need to know about Judge0: https://api.judge0.com/
+
+---------------------------------------------------------
 
 <b>HEROKU</b>
