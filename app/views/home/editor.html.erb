@@ -19,7 +19,7 @@
 	        <p style="margin-top:5px;"><span>Output:</span><%==  @problem.output2  %></p>
 	    </div>
 		<% if  current_user.admin == 1 %>
-	        <%= link_to "Edit Code", { :controller => :codes, :action => 'edit', :id => @code.id, :lid => @lang.id } %> | 
+	        <%= link_to "Edit Code", { :controller => :codes, :action => 'edit', :id => @code.id, :lid => @lang.id, :pid => @problem.id } %> | 
 	        <%= link_to 'Delete Code', code_path(@code), method: :delete, data: { confirm: 'Are you sure?' } %> | 
 	        <%= link_to 'Edit Problem', edit_problem_path(@problem) %> | 
 	        <%= link_to 'Delete Problem', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -40,6 +40,20 @@
 		    <%= f.submit :value => "Run Code", :class => "run-code" %><br />
 		<% end %>
 		<br />
+		
+		<div style="margin-left: -123px; margin-top: -444px;">
+			<% if @previous.present? %>
+				<%= link_to "Previous", {:action => 'editor', :id => @previous.id, :lid => @lang.id},{ class: "next-previous" } %>
+			<% end %>
+		</div>
+		
+		
+		<div style="clear: both; margin-right: -90px; margin-top: -24px; margin-left: -50px; float: right;">
+			<% if @next.present? %>
+				<%= link_to "Next", {:action => 'editor', :id => @next.id, :lid => @lang.id},{ class: "next-previous" } %>
+			<% end %>
+		</div>
+			
 		<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 		    var textarea = $('#editor_code');

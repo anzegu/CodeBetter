@@ -10,6 +10,19 @@ class HomeController < ApplicationController
     if @code.nil?
       redirect_to request.referer || root_path, notice: "This language doesn't exist for the selected challange"
     end
+    
+    if (Problem.where(id: @problem.id + 1)).nil?
+      @next = Problem.find_by(id: @problem.id)
+    else
+      @next = Problem.find_by(id: @problem.id + 1)
+    end
+    
+    if (Problem.where(id: @problem.id - 1)).nil?
+      @previous = Problem.find_by(id: @problem.id)
+    else
+      @previous = Problem.find_by(id: @problem.id - 1)
+    end
+    
   end
   
   def code_request

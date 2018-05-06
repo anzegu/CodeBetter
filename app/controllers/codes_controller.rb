@@ -21,8 +21,8 @@ class CodesController < ApplicationController
 
   # GET /codes/1/edit
   def edit
-    @lang = Language.find_by(id: params[:lid])
-    @problem = Problem.find(params[:id])
+    @lang = Language.find(params[:lid])
+    @problem = Problem.find(params[:pid])
   end
 
   # POST /codes
