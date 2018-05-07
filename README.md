@@ -58,4 +58,11 @@ Everything else that you would need to know about Judge0: https://api.judge0.com
 
 <b>HEROKU</b>
 
-This project is uploaded on Heroku
+This project is uploaded on Heroku. I had to optimize database because Heroku doesn't use sqlite3 and had to add few lines.
+```
+
+group :production do
+  gem 'pg', '~> 0.15'
+  gem 'rails_12factor'
+end
+```
