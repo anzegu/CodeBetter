@@ -5,7 +5,8 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  name: bazica
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
@@ -13,11 +14,6 @@ development:
   <<: *default
   database: db/development.sqlite3
   
-production:
-  adapter: postgresql
-  database: bazica
-  pool: 5
-  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
