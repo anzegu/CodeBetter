@@ -2,6 +2,10 @@ class HomeController < ApplicationController
 	before_action :set_problem, only: [:editor, :language]
 	
   def index
+    @numberRuby = Code.where(:languge_id => 2).count
+    @numverCPP = Code.where(:languge_id => 3).count
+    @numberJS = Code.where(:languge_id => 1).count
+    @numberProblems = Problem.all.size
   end
 
   def editor

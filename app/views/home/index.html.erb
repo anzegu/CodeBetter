@@ -4,13 +4,13 @@
     </div> 
     <div id="language_form">
         <div class="language_choosediv">
-            <%= link_to "Ruby", {:action => 'editor', :id => "1", :lid => "2"},{class: 'languages_choose'} %><br>
+            <%= link_to "Ruby", {:action => 'editor', :id => "1", :lid => "2"},{class: 'languages_choose'} %> (<%= @numberRuby %> / <%= @numberProblems %>)<br>
         </div>
         <div class="language_choosediv">
-            <%= link_to "JavaScript", {:action => 'editor', :id => "1", :lid => "1"},{class: 'languages_choose'} %><br>
+            <%= link_to "JavaScript", {:action => 'editor', :id => "1", :lid => "1"},{class: 'languages_choose'} %> (<%= @numberJS %> / <%= @numberProblems %>)<br>
         </div>
         <div class="language_choosediv">
-            <%= link_to "C++", {:action => 'editor', :id => "1", :lid => "3"},{class: 'languages_choose'} %><br>
+            <%= link_to "C++", {:action => 'editor', :id => "1", :lid => "3"},{class: 'languages_choose'} %> (<%= @numberCPP %> / <%= @numberProblems %>)<br>
         </div>
     </div>
     <p id="notice"><%= notice %></p>
